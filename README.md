@@ -1,42 +1,37 @@
-# Backend
+## Project Title: 
+- ContentFlow-A Social Media Content Scheduler
+## Project Description: 
+- Social Media Content Scheduler is a centralized platform designed to help social media managers efficiently plan, schedule, and track content across multiple platforms. It allows users to automate post publishing, view campaigns through a visual content calendar, monitor engagement with real-time analytics, and collaborate with team members. With features like trending hashtag suggestions  and cross-platform insights, the system ensures consistent posting, improved audience engagement, and significant time savings.
 
-Node.js + Express API server for the ContentFlow app.
+## Tech Stack Used
+ - Frontend: React, TypeScript, ShadCN, Tailwind CSS
+ - Backend: Express.js, Node.js
+ - Database: Supabase
 
-## Structure
+## Installation Steps
+1. Clone the Repository
+2. Backend Setup
+    - Step 1: Navigate to Backend Folder(cd backend)
+    - Step 2: Install Dependencies(npm install)
+    - Step 3: Create Environment File
+        - Create a .env file inside the backend folder and add:
+        - PORT=8081
+        - SUPABASE_URL=your_supabase_url
+        - SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+    - Step 4: Start Backend Server(npm run dev)
+        - Backend will run on: http://localhost:8082
+3. Frontend Setup
+    - Step 1: Navigate to Frontend Folder
+        - Open a new terminal and run:
+        - cd frontend
+    - Step 2: Install Dependencies(npm install)
+    - Step 3: Configure API URL
+        - Create a .env file inside the frontend folder and add:
+        - VITE_API_URL=http://localhost:8081
+    - Step 4: Start Frontend Server
+        - npm run dev
+        - Frontend will run on:
+        - http://localhost:8081  
 
-- `src/index.js`: API entrypoint
-- `src/config/`: backend configuration (`supabase.js`)
-- `src/controllers/`: request handlers (scaffold)
-- `src/routes/`: route definitions (scaffold)
-- `src/services/`: business logic (scaffold)
-- `src/middleware/`: middleware utilities (scaffold)
-
-## Run
-
-```bash
-npm install
-npm run dev
-```
-
-Use `.env.example` to configure:
-
-- `API_PORT`
-- `APP_ORIGIN`
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- `SUPABASE_STORAGE_BUCKET`
-
-## Supabase SQL (required)
-
-Copy and run the SQL content from this file in Supabase SQL Editor:
-
-- `Backend/sql/001_init_supabase.sql`
-
-This migration creates:
-
-- `profiles`
-- `posts`
-- `calendar_events`
-- `team_tasks`
-- RLS policies for user-scoped access
-- Storage bucket `post-media` and storage policies
+## Deployment Link
+- https://contentflowbackend.onrender.com/
