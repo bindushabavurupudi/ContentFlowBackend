@@ -6,17 +6,40 @@ import { isSupabaseConfigured, supabaseAdmin, supabaseConfigError } from "./conf
 
 const app = express();
 const PORT = Number(process.env.PORT || process.env.API_PORT || 8081);
-const ORIGIN = process.env.APP_ORIGIN || "http://localhost:8080";
+// const ORIGIN = process.env.APP_ORIGIN || "http://localhost:8080";
 const STORAGE_BUCKET = process.env.SUPABASE_STORAGE_BUCKET || "post-media";
 if (!isSupabaseConfigured) {
   throw new Error(supabaseConfigError || "Supabase is not configured");
 }
 
+// app.use(
+//   cors({
+//     origin: ORIGIN,
+//     credentials: false,
+//   }),
+// );
+
+const allowedOrigins = [
+  "http://localhost:8080",
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://glistening-syrniki-b8b2a4.netlify.app"
+];
+
 app.use(
   cors({
-    origin: ORIGIN,
-    credentials: false,
-  }),
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
 );
 app.use(express.json({ limit: "1mb" }));
 
